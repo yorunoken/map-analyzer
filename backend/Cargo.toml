@@ -1,0 +1,14 @@
+[package]
+name = "backend"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+dotenvy = "0.15.7"
+serde = { version = "1.0.206", features = ["derive"] }
+tokio = { version = "1.39.2", features = ["full"] }
+warp = "0.3.7"
+osu-map-analyzer = { version = "0.1.2", features = ["serialize"] }
+rosu-v2 = { features = ["serialize"], version = "0.9.0" }
+rosu-pp = "1.1.0"
+reqwest = { version = "0.12.8", features = ["rustls-tls", "json"] }

@@ -22,10 +22,12 @@ export default function Main() {
         return await response.json();
     }
 
-    async function getBeatmapAnalysis(
+    async function getBeatmapAnalysis<T extends "stream" | "jump" | "all">(
         beatmapId: number,
-        analysisType: "stream",
-    ): Promise<BeatmapAnalysisResult> {
+        analysisType: T,
+    ): Promise<
+        T extends "all" ? BeatmapAnalysisResult[] : BeatmapAnalysisResult
+    > {
         "use server";
 
         const response = await fetch(

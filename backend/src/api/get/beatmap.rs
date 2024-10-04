@@ -1,8 +1,6 @@
-use osu_map_analyzer::{
-    analyze::{self, StreamAnalysis},
-    rosu_map,
-};
+use osu_map_analyzer::{analyze, rosu_map};
 use rosu_pp::{Beatmap, Difficulty};
+use serde_json::Value;
 
 use rosu_v2::{prelude::RankStatus, Osu as OsuClient};
 use serde::Serialize;
@@ -192,7 +190,7 @@ pub async fn beatmap_details(
 #[derive(Serialize)]
 struct AnalysisResult {
     analysis_type: String,
-    analysis: StreamAnalysis,
+    analysis: Value,
 }
 
 pub async fn analyze_beatmap(
@@ -203,6 +201,28 @@ pub async fn analyze_beatmap(
     let map = rosu_map::from_path::<rosu_map::Beatmap>(path).unwrap();
 
     match analyze_type.to_lowercase().as_str() {
+        "all" => {
+            let mut stream_analyzer = analyze::Stream::new(map.clone());
+            let stream_analysis = stream_analyzer.analyze();
+
+            let mut jump_analyzer = analyze::Jump::new(map);
+            let jump_analysis = jump_analyzer.analyze();
+
+            Ok(reply::with_status(
+                reply::json(&vec![
+                    AnalysisResult {
+                        analysis_type: String::from("jump"),
+                        analysis: serde_json::to_value(jump_analysis).unwrap(),
+                    },
+                    AnalysisResult {
+                        analysis_type: String::from("stream"),
+                        analysis: serde_json::to_value(stream_analysis).unwrap(),
+                    },
+                ]),
+                StatusCode::OK,
+            ))
+        }
+
         "stream" => {
             let mut stream_analyzer = analyze::Stream::new(map);
             let analysis = stream_analyzer.analyze();
@@ -210,16 +230,30 @@ pub async fn analyze_beatmap(
             Ok(reply::with_status(
                 reply::json(&AnalysisResult {
                     analysis_type: String::from("stream"),
-                    analysis,
+                    analysis: serde_json::to_value(analysis).unwrap(),
                 }),
                 StatusCode::OK,
             ))
         }
+
+        "jump" => {
+            let mut jump_analyzer = analyze::Jump::new(map);
+            let analysis = jump_analyzer.analyze();
+
+            Ok(reply::with_status(
+                reply::json(&AnalysisResult {
+                    analysis_type: String::from("jump"),
+                    analysis: serde_json::to_value(analysis).unwrap(),
+                }),
+                StatusCode::OK,
+            ))
+        }
+
         _ => {
             // Handle cases where `analyze_type` is not desired type.
             return Ok(reply::with_status(
                 reply::json(&ApiError {
-                    error: "Bad request: `analyze_type` must be either: `stream`, `jump`, `tech`."
+                    error: "Bad request: `analyze_type` must be either: `stream`, `jump`, `all`."
                         .to_string(),
                 }),
                 StatusCode::BAD_REQUEST,

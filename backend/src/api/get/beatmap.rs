@@ -47,6 +47,7 @@ pub async fn beatmap_details(
     let beatmap = match osu_client.beatmap().map_id(beatmap_id).await {
         Ok(ok) => ok,
         Err(err) => {
+            eprintln!("Error while fetching beatmap: {}", err);
             return Ok(reply::with_status(
                 reply::json(&ApiError {
                     error: format!("Error while fetching beatmap: {}", err),
@@ -59,6 +60,7 @@ pub async fn beatmap_details(
     let beatmapset = match beatmap.mapset {
         Some(s) => s,
         None => {
+            eprintln!("Couldn't get beatmapset from beatmap (wtf?)");
             return Ok(reply::with_status(
                 reply::json(&ApiError {
                     error: format!("Couldn't get beatmapset from beatmap (wtf?)"),
@@ -78,6 +80,7 @@ pub async fn beatmap_details(
             Ok(bytes) => match String::from_utf8(bytes.to_vec()) {
                 Ok(string) => string,
                 Err(err) => {
+                    eprintln!("Error while converting bytes to string: {}", err);
                     return Ok(reply::with_status(
                         reply::json(&ApiError {
                             error: format!("Error while converting bytes to string: {}", err),
@@ -87,6 +90,7 @@ pub async fn beatmap_details(
                 }
             },
             Err(err) => {
+                eprintln!("Error while downloading beatmap: {}", err);
                 return Ok(reply::with_status(
                     reply::json(&ApiError {
                         error: format!("Error while downloading beatmap: {}", err),
@@ -101,6 +105,7 @@ pub async fn beatmap_details(
                 let mut data_buf = String::new();
 
                 if let Err(why) = file.read_to_string(&mut data_buf) {
+                    eprintln!("Error while reading file: {}", why);
                     return Ok(reply::with_status(
                         reply::json(&ApiError {
                             error: format!("Error while reading file: {}", why),
@@ -116,6 +121,7 @@ pub async fn beatmap_details(
                     Ok(bytes) => match String::from_utf8(bytes.to_vec()) {
                         Ok(string) => string,
                         Err(err) => {
+                            eprintln!("Error while converting bytes to string: {}", err);
                             return Ok(reply::with_status(
                                 reply::json(&ApiError {
                                     error: format!(
@@ -128,6 +134,7 @@ pub async fn beatmap_details(
                         }
                     },
                     Err(err) => {
+                        eprintln!("Error while downloading beatmap: {}", err);
                         return Ok(reply::with_status(
                             reply::json(&ApiError {
                                 error: format!("Error while downloading beatmap: {}", err),
@@ -138,6 +145,7 @@ pub async fn beatmap_details(
                 },
 
                 _ => {
+                    eprintln!("Internal server error: {}", err);
                     return Ok(reply::with_status(
                         reply::json(&ApiError {
                             error: format!("Internal server error: {}", err),
@@ -152,6 +160,7 @@ pub async fn beatmap_details(
     let map_calculate = match Beatmap::from_str(&map_file) {
         Ok(map) => map,
         Err(err) => {
+            eprintln!("Error parsing beatmap: {}", err);
             return Ok(reply::with_status(
                 reply::json(&ApiError {
                     error: format!("Error parsing beatmap: {}", err),

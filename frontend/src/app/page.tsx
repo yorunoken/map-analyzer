@@ -10,7 +10,7 @@ export default function Main() {
     ): Promise<BeatmapDetailsResult> {
         "use server";
 
-        console.log(`${BACKEND_URL}/api/${beatmapId}/details`);
+        console.log(`${BACKEND_URL}/api/beatmaps/${beatmapId}/details`);
         const response = await fetch(
             `${BACKEND_URL}/api/beatmaps/${beatmapId}/details`,
         );

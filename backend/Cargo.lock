@@ -841,9 +841,9 @@ dependencies = [
 
 [[package]]
 name = "osu-map-analyzer"
-version = "0.2.1"
+version = "0.2.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "fca57211a75ec2d5989c652b6889078992ce2c4cb71dd3518af006b3a12a504c"
+checksum = "0bcb410e2ca675350d26cbb0f2350acfdce6d2ef2c0d7adcebb26aad3c6b317a"
 dependencies = [
  "rosu-map",
  "serde",

@@ -23,6 +23,7 @@ export interface BeatmapDetailsResult {
     title: string;
     artist: string;
     creator: string;
+    creator_id: number;
     version: string;
     set_id: number;
     statistics: {
@@ -177,7 +178,7 @@ export default function Analysis({
                                         <p className="text-sm text-center">
                                             mapped by{" "}
                                             <Link
-                                                href={`https://osu.ppy.sh/users/${detailsResult.creator}`}
+                                                href={`https://osu.ppy.sh/users/${detailsResult.creator_id}`}
                                                 className="hover:underline text-pink-200"
                                                 target="_blank"
                                             >

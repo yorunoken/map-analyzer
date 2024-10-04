@@ -10,10 +10,10 @@ export default function Main() {
     ): Promise<BeatmapDetailsResult> {
         "use server";
 
+        console.log(`${BACKEND_URL}/api/${beatmapId}/details`);
         const response = await fetch(
             `${BACKEND_URL}/api/beatmaps/${beatmapId}/details`,
         );
-        console.log(`${BACKEND_URL}/api/${beatmapId}/details`);
 
         if (!response.ok) {
             throw new Error("Response not ok.");
@@ -30,10 +30,10 @@ export default function Main() {
     > {
         "use server";
 
-        const response = await fetch(
+        console.log(
             `${BACKEND_URL}/api/beatmaps/${beatmapId}/analyze/${analysisType}`,
         );
-        console.log(
+        const response = await fetch(
             `${BACKEND_URL}/api/beatmaps/${beatmapId}/analyze/${analysisType}`,
         );
 

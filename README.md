@@ -1,6 +1,6 @@
-# osu! Map Analyzer
+# osu! beatmap analyzer
 
-osu! Map Analyzer is a website that analyzes osu! beatmaps and categorizes them based on their characteristics.
+osu! beatmap analyzer is a website that analyzes osu! beatmaps and categorizes them based on their characteristics.
 
 ## Features
 

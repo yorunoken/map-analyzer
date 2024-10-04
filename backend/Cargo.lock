@@ -39,6 +39,7 @@ dependencies = [
  "rosu-pp",
  "rosu-v2",
  "serde",
+ "serde_json",
  "tokio",
  "warp",
 ]
@@ -840,9 +841,9 @@ dependencies = [
 
 [[package]]
 name = "osu-map-analyzer"
-version = "0.1.2"
+version = "0.2.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "cf8a5dced316b159d141c5fdc46eaa6c20f1c3d5f4d208a99d8eee0b5e6a8c76"
+checksum = "fca57211a75ec2d5989c652b6889078992ce2c4cb71dd3518af006b3a12a504c"
 dependencies = [
  "rosu-map",
  "serde",

@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-import { cn } from "@/lib/utils";
+import { Toaster } from "@/components/ui/toaster";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
+import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
     title: "osu! beatmap analyzer",
@@ -33,6 +34,7 @@ export default function RootLayout({
                         <main>{children}</main>
                         <Footer />
                     </div>
+                    <Toaster />
                 </ThemeProvider>
             </body>
         </html>

@@ -10,6 +10,7 @@ import {
     AccordionItem,
     AccordionTrigger,
 } from "@/components/ui/accordion";
+import { useToast } from "@/hooks/use-toast";
 
 import { useState } from "react";
 import { AlertTriangle, BarChart, Music } from "lucide-react";
@@ -77,6 +78,7 @@ export default function Analysis({
     const [beatmapUrl, setBeatmapUrl] = useState("");
     const [beatmapSetId, setBeatmapSetId] = useState(0);
     const [beatmapId, setBeatmapId] = useState(0);
+    const { toast } = useToast();
 
     const [analysisResult, setAnalysisResult] = useState<
         BeatmapAnalysisResult[] | null
@@ -99,18 +101,29 @@ export default function Analysis({
             return;
         }
 
-        const mapDetails = await getBeatmapDetails(+beatmapId);
-        const mapAnalysis = await getBeatmapAnalysis(+beatmapId, "all");
+        try {
+            const mapDetails = await getBeatmapDetails(+beatmapId);
+            const mapAnalysis = await getBeatmapAnalysis(+beatmapId, "all");
 
-        mapAnalysis.sort(
-            (a, b) =>
-                b.analysis.overall_confidence - a.analysis.overall_confidence,
-        );
+            mapAnalysis.sort(
+                (a, b) =>
+                    b.analysis.overall_confidence -
+                    a.analysis.overall_confidence,
+            );
 
-        setBeatmapSetId(mapDetails.set_id);
-        setBeatmapId(+beatmapId);
-        setDetailsResult(mapDetails);
-        setAnalysisResult(mapAnalysis);
+            setBeatmapSetId(mapDetails.set_id);
+            setBeatmapId(+beatmapId);
+            setDetailsResult(mapDetails);
+            setAnalysisResult(mapAnalysis);
+        } catch (e) {
+            console.error(e);
+            toast({
+                variant: "destructive",
+                title: "Oops!",
+                description:
+                    "Looks like there was an issue while processing your beatmap.\nPlease make sure you input a valid beatmap link.",
+            });
+        }
     }
 
     return (

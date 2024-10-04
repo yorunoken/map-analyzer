@@ -6,7 +6,6 @@ import Header from "@/components/header";
 import Footer from "@/components/footer";
 import Script from "next/script";
 import { cn } from "@/lib/utils";
-import { Head } from "next/document";
 
 export const metadata: Metadata = {
     title: "osu! beatmap analyzer",

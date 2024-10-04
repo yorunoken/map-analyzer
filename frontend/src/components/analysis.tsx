@@ -144,50 +144,53 @@ export default function Analysis({
             {analysisResult && detailsResult && (
                 <>
                     <div className="mb-2">
-                        <div className="relative mb-6 overflow-hidden h-full rounded-lg">
-                            <Image
-                                alt="beatmap cover"
-                                width={9999}
-                                height={9999}
-                                src={`https://assets.ppy.sh/beatmaps/${beatmapSetId}/covers/cover.jpg`}
-                                className="w-full h-auto"
-                            />
-                            <div className="absolute inset-0 bg-black bg-opacity-60 backdrop-blur-sm"></div>
-                            <div className="absolute inset-0 flex flex-col justify-center items-center text-white p-4">
-                                <h2 className="text-3xl font-bold mb-2">
-                                    <Link
-                                        href={`https://osu.ppy.sh/b/${beatmapId}`}
-                                        className="underline text-pink-100"
-                                        target="_blank"
-                                    >
-                                        {detailsResult.title}
-                                    </Link>
-                                </h2>
-                                <p className="text-xl mb-1">
-                                    by{" "}
-                                    <Link
-                                        href={`https://osu.ppy.sh/beatmapsets?q=artist=""${detailsResult.artist}""`}
-                                        className="hover:underline text-pink-300"
-                                        target="_blank"
-                                    >
-                                        {detailsResult.artist}
-                                    </Link>
-                                </p>
-                                <p className="text-lg">
-                                    mapped by{" "}
-                                    <Link
-                                        href={`https://osu.ppy.sh/users/${detailsResult.creator}`}
-                                        className="hover:underline text-pink-200"
-                                        target="_blank"
-                                    >
-                                        {detailsResult.creator}
-                                    </Link>
-                                </p>
-                                <p className="text-lg">
-                                    [ {detailsResult.version} ]
-                                </p>
-                            </div>
-                        </div>
+                        <Card className="mb-6">
+                            <CardContent className="p-0">
+                                <div className="relative aspect-[16/10] sm:aspect-[16/5] overflow-hidden">
+                                    <Image
+                                        alt="beatmap cover"
+                                        fill
+                                        src={`https://assets.ppy.sh/beatmaps/${beatmapSetId}/covers/cover.jpg`}
+                                        className="object-cover"
+                                    />
+                                    <div className="absolute inset-0 bg-black bg-opacity-60 backdrop-blur-sm"></div>
+                                    <div className="absolute inset-0 flex flex-col justify-center items-center text-white p-4">
+                                        <h2 className="text-2xl font-bold mb-2 text-center">
+                                            <Link
+                                                href={`https://osu.ppy.sh/b/${beatmapId}`}
+                                                className="underline text-pink-100"
+                                                target="_blank"
+                                            >
+                                                {detailsResult.title}
+                                            </Link>
+                                        </h2>
+                                        <p className="text-base mb-1 text-center">
+                                            by{" "}
+                                            <Link
+                                                href={`https://osu.ppy.sh/beatmapsets?q=artist="${detailsResult.artist}"`}
+                                                className="hover:underline text-pink-300"
+                                                target="_blank"
+                                            >
+                                                {detailsResult.artist}
+                                            </Link>
+                                        </p>
+                                        <p className="text-sm text-center">
+                                            mapped by{" "}
+                                            <Link
+                                                href={`https://osu.ppy.sh/users/${detailsResult.creator}`}
+                                                className="hover:underline text-pink-200"
+                                                target="_blank"
+                                            >
+                                                {detailsResult.creator}
+                                            </Link>
+                                        </p>
+                                        <p className="text-sm mt-1">
+                                            [ {detailsResult.version} ]
+                                        </p>
+                                    </div>
+                                </div>
+                            </CardContent>
+                        </Card>
                         <div className="grid gap-6 md:grid-cols-2">
                             <Card>
                                 <CardHeader>

@@ -9,21 +9,23 @@ export default function Footer() {
                 </span>
                 <div className="flex flex-wrap justify-center sm:justify-end items-center gap-4 text-sm">
                     <Link
-                        href="/about"
-                        className="hover:underline"
+                        href="https://yorunoken.com/support"
+                        className="hover:underline font-bold animate-color-change"
+                        target="_blank"
                         prefetch={false}
                     >
-                        About
+                        Support me!
                     </Link>
                     <Link
-                        href="/contact"
+                        href="https://yorunoken.com"
                         className="hover:underline"
+                        target="_blank"
                         prefetch={false}
                     >
                         Contact
                     </Link>
                     <Link
-                        href="https://github.com/yorunoken/hanami-manga"
+                        href="https://github.com/yorunoken/map-analyzer"
                         target="_blank"
                         className="hover:underline"
                         prefetch={false}

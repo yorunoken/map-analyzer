@@ -12,7 +12,7 @@ export default function Main() {
 
         console.log(`${BACKEND_URL}/api/beatmaps/${beatmapId}/details`);
         const response = await fetch(
-            `${BACKEND_URL}/api/beatmapffs/${beatmapId}/details`,
+            `${BACKEND_URL}/api/beatmaps/${beatmapId}/details`,
         );
 
         if (!response.ok) {

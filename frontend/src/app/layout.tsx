@@ -21,11 +21,10 @@ export default function RootLayout({
     return (
         <html lang="en">
             <Head>
-                <script
-                    defer
+                <Script
                     src="https://cloud.umami.is/script.js"
                     data-website-id="b95e60a2-630f-4dab-814f-7299ebab3d61"
-                ></script>
+                />
             </Head>
             <body
                 className={cn(

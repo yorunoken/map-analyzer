@@ -29,7 +29,7 @@ osu! Map Analyzer is a website that analyzes osu! beatmaps and categorizes them 
 
 ## Contributing
 
-This project is essentilly in beta. If you come across and issues or have suggestions for improvements,
+This project is essentially in beta. If you come across and issues or have suggestions for improvements,
 please open an issue or a pull request.
 
 ## Planned Features

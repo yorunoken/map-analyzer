@@ -294,7 +294,7 @@ export default function Analysis({
                             <AlertTriangle className="h-4 w-4 flex-shrink-0" />
                         </div>
                         <AlertDescription className="ml-2">
-                            This website is still in beta. Please{" "}
+                            This website is still early in development. Please{" "}
                             <Link
                                 href="https://github.com/yorunoken/map-analyzer/issues"
                                 className="underline"

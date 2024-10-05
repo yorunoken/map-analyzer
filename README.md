@@ -2,6 +2,8 @@
 
 osu! beatmap analyzer is a website that analyzes osu! beatmaps and categorizes them based on their characteristics.
 
+It uses [an analyzer library I wrote in Rust](https://github.com/yorunoken/osu-map-analyzer-lib) to calculate its values.
+
 ## Features
 
 - Analyze osu! beatmaps by URL

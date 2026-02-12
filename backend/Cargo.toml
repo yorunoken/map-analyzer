@@ -6,7 +6,7 @@ edition = "2021"
 [dependencies]
 dotenvy = "0.15.7"
 serde = { version = "1.0.206", features = ["derive"] }
-tokio = { version = "1.39.2", features = ["full"] }
+tokio = { version = "1.43.1", features = ["full"] }
 warp = "0.3.7"
 osu-map-analyzer = { version = "0.2.9", features = ["serialize"] }
 rosu-v2 = { features = ["serialize"], version = "0.9.0" }
